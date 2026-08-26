@@ -1,4 +1,4 @@
-# Agent Skills Collection 01
+# Agent Skills Collection - v1
 
 Reusable agent skills for AI-assisted software delivery workflows, spec-driven Java development, Spring Boot, MicroProfile, and Quarkus work, BCE migration, and repository operations.
 
