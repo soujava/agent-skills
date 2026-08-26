@@ -31,7 +31,7 @@ The `microprofile-server` skill is based on [Adam Bien's `airails` MicroProfile 
 ## Install With The Skills CLI
 
 ```bash
-npx skills add dearrudam/agent-skills-01
+npx skills add soujava/agent-skills
 ```
 
 ## Install With `installSkills`
@@ -63,13 +63,13 @@ When a skill fails to install, the installer reports the failure, keeps installi
 Install manually for Claude Code:
 
 ```bash
-git clone https://github.com/dearrudam/agent-skills-01.git
-cp -rf agent-skills-01/skills/* ~/.claude/skills/
+git clone https://github.com/soujava/agent-skills.git
+cp -rf agent-skills/skills/* ~/.claude/skills/
 ```
 
 Install manually for OpenCode or Codex:
 
 ```bash
-git clone https://github.com/dearrudam/agent-skills-01.git
-cp -rf agent-skills-01/skills/* ~/.agents/skills/
+git clone https://github.com/soujava/agent-skills.git
+cp -rf agent-skills/skills/* ~/.agents/skills/
 ```
