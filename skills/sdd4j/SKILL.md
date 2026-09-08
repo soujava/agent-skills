@@ -265,6 +265,16 @@ Report:
 - Inverse drift found in code or tests.
 - Verification command and result.
 
+#### Semantic conformance audit procedure
+
+A green verification and complete traceability are necessary but not sufficient. During `verify`, audit every `Rn.m` for semantic drift:
+
+1. Extract the concrete contract value the statement fixes: a number, a string, an HTTP status, a timeout, a cache key prefix, a header name, an endpoint, a default fallback, or any literal value.
+2. Locate the mapped implementation that realizes the statement and the traced test that exercises it.
+3. Verify that the implementation and the test honor the same contract value, not only the same code path or exception type.
+4. Pay explicit attention to hardcoded defaults, constants, and fallback values; compare them against the spec.
+5. If a default, constant, or fallback value differs from the spec, report it as semantic drift and do not treat the build as proof of conformance.
+
 ## Spec Format
 
 Author capability specs from `references/capability-spec-template.md`.
