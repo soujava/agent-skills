@@ -1,0 +1,62 @@
+<mxfile>
+  <diagram name="Package By Layer" id="layered1">
+    <mxGraphModel dx="1024" dy="768" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <!-- Layer: Entrypoints -->
+        <mxCell id="10" value="Entrypoints" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=10;container=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#000000;fontSize=14;fontStyle=1;verticalAlign=top;spacingTop=8;collapsible=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="220" height="140" as="geometry"/>
+        </mxCell>
+        <!-- Entrypoint: CheckoutResource -->
+        <mxCell id="11" value="CheckoutResource" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=10;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#000000;fontSize=13;fontStyle=0;" vertex="1" parent="10">
+          <mxGeometry x="30" y="50" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Layer: Application -->
+        <mxCell id="12" value="Application" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=10;container=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#000000;fontSize=14;fontStyle=1;verticalAlign=top;spacingTop=8;collapsible=0;" vertex="1" parent="1">
+          <mxGeometry x="320" y="80" width="220" height="140" as="geometry"/>
+        </mxCell>
+        <!-- Application: CheckoutService -->
+        <mxCell id="13" value="CheckoutService" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=10;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#000000;fontSize=13;fontStyle=0;" vertex="1" parent="12">
+          <mxGeometry x="30" y="50" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Layer: Domain -->
+        <mxCell id="14" value="Domain" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=10;container=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#000000;fontSize=14;fontStyle=1;verticalAlign=top;spacingTop=8;collapsible=0;" vertex="1" parent="1">
+          <mxGeometry x="580" y="80" width="220" height="140" as="geometry"/>
+        </mxCell>
+        <!-- Domain: Order -->
+        <mxCell id="15" value="Order" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=10;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#000000;fontSize=13;fontStyle=0;" vertex="1" parent="14">
+          <mxGeometry x="30" y="50" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Layer: Infrastructure (fillColor=none: gray node would blend into gray fill) -->
+        <mxCell id="16" value="Infrastructure" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=10;container=1;fillColor=none;strokeColor=#666666;fontColor=#000000;fontSize=14;fontStyle=1;verticalAlign=top;spacingTop=8;collapsible=0;" vertex="1" parent="1">
+          <mxGeometry x="580" y="260" width="220" height="140" as="geometry"/>
+        </mxCell>
+        <!-- Infrastructure: OrderRepository -->
+        <mxCell id="17" value="OrderRepository" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=10;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#000000;fontSize=13;fontStyle=0;" vertex="1" parent="16">
+          <mxGeometry x="30" y="50" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <!-- External: Message Broker -->
+        <mxCell id="18" value="Message Broker" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=10;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#000000;fontSize=13;fontStyle=0;dashed=1;dashPattern=8 4;" vertex="1" parent="1">
+          <mxGeometry x="350" y="300" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Edge: CheckoutResource -> CheckoutService (crosses containers: pinned) -->
+        <mxCell id="20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#000000;fontColor=#000000;fontSize=16;fontStyle=0;endArrow=block;endFill=1;shadow=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="11" target="13" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Edge: CheckoutService -> Order (crosses containers: pinned) -->
+        <mxCell id="21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#000000;fontColor=#000000;fontSize=16;fontStyle=0;endArrow=block;endFill=1;shadow=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="13" target="15" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Edge: CheckoutService -> OrderRepository (crosses containers: pinned) -->
+        <mxCell id="22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#000000;fontColor=#000000;fontSize=16;fontStyle=0;endArrow=block;endFill=1;shadow=0;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="13" target="17" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Edge: CheckoutService -> Message Broker (async: dashed; crosses container: pinned) -->
+        <mxCell id="23" value="events" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#000000;fontColor=#000000;fontSize=16;fontStyle=0;endArrow=block;endFill=1;shadow=0;dashed=1;dashPattern=8 4;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="13" target="18" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

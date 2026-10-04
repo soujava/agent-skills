@@ -19,6 +19,9 @@ Reusable agent skills for AI-assisted software delivery workflows, spec-driven J
 | [`java-distiller`](skills/java-distiller/README.md) | Simplifies, modernizes, refactors, and beautifies existing Java code. |
 | [`java-conventions`](skills/java-conventions/README.md) | Enforces versioned, idiomatic Java language conventions for writing, generating, or reviewing Java code. |
 | [`conventional-commit`](skills/conventional-commit/README.md) | Analyzes staged git diffs and generates Conventional Commit messages. |
+| [`diagrams`](skills/diagrams/README.md) | Routes architecture overview diagram requests through architecture, scope, and format choices to the `mermaid` or `drawio` renderer skills. |
+| [`drawio`](skills/drawio/README.md) | Generates draw.io XML overview diagrams with shape mappings for BCE, package-by-layer, and package-by-feature architectures. |
+| [`mermaid`](skills/mermaid/README.md) | Generates Mermaid overview diagrams with shape and style mappings for BCE, package-by-layer, and package-by-feature architectures. |
 
 ## Acknowledgements
 

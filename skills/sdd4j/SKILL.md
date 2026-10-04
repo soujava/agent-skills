@@ -1,6 +1,7 @@
 ---
 name: sdd4j
 description: Spec-Driven Development for Java workflow using package-info.java as the co-located capability contract. Use when the user asks for SDD4J, spec-driven Java development, package-info.java specs, EARS requirements, traceable requirement tests, or wants to set up, create, apply, verify, or converge a capability spec across architectures such as sdd4j-package-by-feature, sdd4j-package-by-layer, or sdd4j-bce.
+argument-hint: setup, new|apply|verify <capability-or-feature>
 metadata:
   type: workflow
 ---
@@ -16,8 +17,8 @@ Use SDD4J as:
 ```text
 /sdd4j setup
 /sdd4j new <capability-or-feature>
-/sdd4j apply <capability>
-/sdd4j verify <capability>
+/sdd4j apply <capability-or-feature>
+/sdd4j verify <capability-or-feature>
 ```
 
 If the user clearly asks for this workflow without slash syntax, infer the matching mode.
@@ -145,7 +146,7 @@ source of truth**. Author from `references/readme-template.md`. Two slices, hand
 - **Hand-maintained** (outside the markers, since no spec covers it — so it can't drift): `## Conventions`, build/run/test delegated to the stack skill, plus free-form meta (license, links, motivation).
 
 - **Doubles as the inception seed.** The hand-written prose outside the markers is what `/sdd4j new` (no argument) reads to bootstrap vision + specs (see `new`); SDD4J reads it, never rewrites it.
-- **Components diagram — projection, never inference.** Render only the *declared* wiring in the system doc's `## Components` (allowed calls + integration events) as a Mermaid graph: nodes are SDD4J capabilities, edges the declared directed relationships. **Never infer edges by scanning code** — that is discovery, not projection, and drift-prone. No `## Components` (a one-SDD4J capability system) → nodes only, or omit. Basic Mermaid `flowchart`/`graph` syntax (version-stable, corpus-dense); delegate diagram style to `/mermaid` or `/bce-diagrams`.
+- **Components diagram — projection, never inference.** Render only the *declared* wiring in the system doc's `## Components` (allowed calls + integration events) as a Mermaid graph: nodes are SDD4J capabilities, edges the declared directed relationships. **Never infer edges by scanning code** — that is discovery, not projection, and drift-prone. No `## Components` (a one-SDD4J capability system) → nodes only, or omit. Basic Mermaid `flowchart`/`graph` syntax (version-stable, corpus-dense); delegate diagram style to `/mermaid`.
 - `## Conventions` is the home for **project-specific, non-behavioral standards** (coverage target, "money is always cents", review policy): **declared, not verified** — no `Sn`, no test — and distinct from a `System invariant`, which must be behavioral *and* tested, and from a `Dn` decision, which records a point-in-time choice with its rejected alternatives.
 - Optional: a one-SDD4J capability project needs none. No markers → `apply` leaves the README untouched.
 
