@@ -1,6 +1,7 @@
 ---
 name: sdd4j
 description: Spec-Driven Development for Java workflow using package-info.java as the co-located capability contract. Use when the user asks for SDD4J, spec-driven Java development, package-info.java specs, EARS requirements, traceable requirement tests, or wants to set up, create, apply, verify, or converge a capability spec across architectures such as sdd4j-package-by-feature, sdd4j-package-by-layer, or sdd4j-bce.
+argument-hint: setup, new|apply|verify <capability-or-feature>
 metadata:
   type: workflow
 ---
@@ -16,8 +17,8 @@ Use SDD4J as:
 ```text
 /sdd4j setup
 /sdd4j new <capability-or-feature>
-/sdd4j apply <capability>
-/sdd4j verify <capability>
+/sdd4j apply <capability-or-feature>
+/sdd4j verify <capability-or-feature>
 ```
 
 If the user clearly asks for this workflow without slash syntax, infer the matching mode.
