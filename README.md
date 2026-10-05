@@ -11,6 +11,7 @@ Reusable agent skills for AI-assisted software delivery workflows, spec-driven J
 | [`sdd4j-package-by-feature`](skills/sdd4j-package-by-feature/README.md) | Maps SDD4J capabilities to co-located Java feature packages. |
 | [`sdd4j-package-by-layer`](skills/sdd4j-package-by-layer/README.md) | Maps SDD4J capabilities to technical layer packages such as controller, service, repository, model, domain, and DTO. |
 | [`sdd4j-bce`](skills/sdd4j-bce/README.md) | Maps SDD4J capabilities to Boundary-Control-Entity business components. |
+| [`sdd4j-hexagonal`](skills/sdd4j-hexagonal/README.md) | Maps SDD4J capabilities to hexagonal (ports and adapters) modules with domain core, application ports, and driving/driven adapters. |
 | [`sdd4j-ears-tests`](skills/sdd4j-ears-tests/README.md) | Transforms SDD4J EARS requirement groups into traceable parameterized tests, with one runner-visible case per statement and generated per-BC requirement symbols for Java stacks. |
 | [`migrate-to-bce`](skills/migrate-to-bce/README.md) | Plans and applies incremental BCE migrations, including SBCE/SDD4J spec reverse engineering with test ID backfill. |
 | [`spring-boot-server`](skills/spring-boot-server/README.md) | Defines stack-specific rules for long-running Java Spring Boot servers while preserving the project's selected architecture. |
@@ -20,8 +21,8 @@ Reusable agent skills for AI-assisted software delivery workflows, spec-driven J
 | [`java-conventions`](skills/java-conventions/README.md) | Enforces versioned, idiomatic Java language conventions for writing, generating, or reviewing Java code. |
 | [`conventional-commit`](skills/conventional-commit/README.md) | Analyzes staged git diffs and generates Conventional Commit messages. |
 | [`diagrams`](skills/diagrams/README.md) | Routes architecture overview diagram requests through architecture, scope, and format choices to the `mermaid` or `drawio` renderer skills. |
-| [`drawio`](skills/drawio/README.md) | Generates draw.io XML overview diagrams with shape mappings for BCE, package-by-layer, and package-by-feature architectures. |
-| [`mermaid`](skills/mermaid/README.md) | Generates Mermaid overview diagrams with shape and style mappings for BCE, package-by-layer, and package-by-feature architectures. |
+| [`drawio`](skills/drawio/README.md) | Generates draw.io XML overview diagrams with shape mappings for BCE, package-by-layer, package-by-feature, and hexagonal architectures. |
+| [`mermaid`](skills/mermaid/README.md) | Generates Mermaid overview diagrams with shape and style mappings for BCE, package-by-layer, package-by-feature, and hexagonal architectures. |
 
 ## Acknowledgements
 
