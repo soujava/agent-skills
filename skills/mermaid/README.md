@@ -1,6 +1,6 @@
 # Mermaid Skill
 
-Generates Mermaid overview diagrams for architecture and component visualization, with shape and style mappings for BCE, package-by-layer, and package-by-feature Java architectures.
+Generates Mermaid overview diagrams for architecture and component visualization, with shape and style mappings for BCE, package-by-layer, package-by-feature, and hexagonal Java architectures.
 
 ## When To Use
 
@@ -23,7 +23,7 @@ graph LR
 
 ## Shape Mappings
 
-One mapping per diagram, selected from the architecture the user named or the composed skill implies (`sdd4j-bce`, `sdd4j-package-by-layer`, `sdd4j-package-by-feature`, or the architecture `diagrams` detected); the Default mapping covers everything else.
+One mapping per diagram, selected from the architecture the user named or the composed skill implies (`sdd4j-bce`, `sdd4j-package-by-layer`, `sdd4j-package-by-feature`, `sdd4j-hexagonal`, or the architecture `diagrams` detected); the Default mapping covers everything else.
 
 | Mapping | Elements |
 |---|---|
@@ -31,6 +31,7 @@ One mapping per diagram, selected from the architecture the user named or the co
 | BCE | business component, subsystem, boundary, control, entity, external |
 | Package By Layer | capability, layer subgraphs, entrypoint, application, domain, infrastructure, external |
 | Package By Feature | feature package, module, shared package, external |
+| Hexagonal | capability core (hexagon node or boundary subgraph), driving adapter, port, use case, domain, driven adapter, external |
 
 Colors carry the same meaning across all mappings: blue = capability/component, green = entrypoint/boundary, purple = application/control, yellow = domain/entity, gray = infrastructure/shared, dashed yellow = external.
 

@@ -1,6 +1,6 @@
 ---
 name: mermaid
-description: Generate Mermaid overview diagrams for architecture and component visualization, with shape and style mappings for BCE, package-by-layer, and package-by-feature Java architectures. Use when asked to create, generate, or draw Mermaid diagrams, architecture overviews, component diagrams, dependency graphs, or system visualizations. Triggers on "mermaid diagram", "architecture diagram", "component overview", "dependency graph", "draw a diagram", or requests to visualize system structure. Not for sequence diagrams or class diagrams.
+description: Generate Mermaid overview diagrams for architecture and component visualization, with shape and style mappings for BCE, package-by-layer, package-by-feature, and hexagonal Java architectures. Use when asked to create, generate, or draw Mermaid diagrams, architecture overviews, component diagrams, dependency graphs, or system visualizations. Triggers on "mermaid diagram", "architecture diagram", "component overview", "dependency graph", "draw a diagram", or requests to visualize system structure. Not for sequence diagrams or class diagrams.
 ---
 
 # Mermaid Overview Diagrams
@@ -23,6 +23,7 @@ description: Generate Mermaid overview diagrams for architecture and component v
   - BCE business components, or `sdd4j-bce` in context → BCE mapping
   - technical layer packages, or `sdd4j-package-by-layer` in context → Package By Layer mapping
   - feature/capability packages, or `sdd4j-package-by-feature` in context → Package By Feature mapping
+  - ports-and-adapters layout, or `sdd4j-hexagonal` in context → Hexagonal mapping
 - when invoked via `diagrams`, use the architecture it detected — the router is architecture-neutral
 - no clear architecture → use the Default mapping
 - never mix mappings inside one diagram
@@ -114,6 +115,32 @@ classDef shared fill:#f5f5f5,stroke:#666666,color:#000,stroke-dasharray:5 5
 classDef ext fill:#fff2cc,stroke:#d6b656,color:#000,stroke-dasharray:5 5
 ```
 
+## Hexagonal (Ports & Adapters) Mapping
+
+Nodes are adapters, ports, use cases, and domain types; the capability core is a subgraph (the hexagon boundary) or a hexagon node. Prefer `graph LR` and draw driving side left, driven side right. Edges show call flow through ports — interface indirection is elided.
+
+| Element | Mermaid syntax | Style class |
+|---|---|---|
+| Capability core (system view) | `Checkout{{"Checkout"}}` hexagon | `cap` |
+| Hexagon boundary (inside a component) | `subgraph Checkout` | — |
+| Driving adapter (REST resource, consumer, CLI, scheduler) | `OrderResource([OrderResource])` | `driving` |
+| Inbound port (use case interface) | `PlaceOrder([PlaceOrderUseCase])` | `port` |
+| Use case / application service | `CheckoutService([CheckoutService])` | `application` |
+| Domain type | `Order([Order])` | `domain` |
+| Outbound port | `LoadOrderPort([LoadOrderPort])` | `port` |
+| Driven adapter (persistence, client, publisher) | `OrderPersistence([OrderPersistenceAdapter])` | `driven` |
+| External service | `PayGW([Payment Gateway])` | `ext` |
+
+```
+classDef cap fill:#dae8fc,stroke:#6c8ebf,color:#000
+classDef driving fill:#d5e8d4,stroke:#82b366,color:#000
+classDef port fill:#e1d5e7,stroke:#9673a6,color:#000
+classDef application fill:#e1d5e7,stroke:#9673a6,color:#000
+classDef domain fill:#fff2cc,stroke:#d6b656,color:#000
+classDef driven fill:#f5f5f5,stroke:#666666,color:#000
+classDef ext fill:#fff2cc,stroke:#d6b656,color:#000,stroke-dasharray:5 5
+```
+
 ## Example — BCE Between Components
 
 ```mermaid
@@ -181,4 +208,45 @@ graph LR
     class Checkout,Inventory,Payments,Notifications cap
     class Shared shared
     class PayGW ext
+```
+
+## Example — Hexagonal Inside a Component
+
+```mermaid
+graph LR
+    OrderResource(["OrderResource"])
+    subgraph Checkout
+        PlaceOrder(["PlaceOrderUseCase"])
+        CheckoutService(["CheckoutService"])
+        Order(["Order"])
+        LoadOrderPort(["LoadOrderPort"])
+        ChargePort(["ChargePaymentPort"])
+    end
+    OrderPersistence(["OrderPersistenceAdapter"])
+    PaymentClient(["PaymentClient"])
+    DB(["Database"])
+    PayGW(["Payment Gateway"])
+
+    OrderResource -->|REST| PlaceOrder
+    PlaceOrder --> CheckoutService
+    CheckoutService --> Order
+    CheckoutService --> LoadOrderPort
+    CheckoutService --> ChargePort
+    LoadOrderPort --> OrderPersistence
+    ChargePort --> PaymentClient
+    OrderPersistence -->|JPA| DB
+    PaymentClient -->|REST| PayGW
+
+    classDef driving fill:#d5e8d4,stroke:#82b366,color:#000
+    classDef port fill:#e1d5e7,stroke:#9673a6,color:#000
+    classDef application fill:#e1d5e7,stroke:#9673a6,color:#000
+    classDef domain fill:#fff2cc,stroke:#d6b656,color:#000
+    classDef driven fill:#f5f5f5,stroke:#666666,color:#000
+    classDef ext fill:#fff2cc,stroke:#d6b656,color:#000,stroke-dasharray:5 5
+    class OrderResource driving
+    class PlaceOrder,LoadOrderPort,ChargePort port
+    class CheckoutService application
+    class Order domain
+    class OrderPersistence,PaymentClient driven
+    class DB,PayGW ext
 ```
