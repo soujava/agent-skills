@@ -57,6 +57,7 @@ Examples:
 ```text
 sdd4j + sdd4j-package-by-feature + spring-boot-server
 sdd4j + sdd4j-package-by-layer + spring-boot-server
+sdd4j + sdd4j-hexagonal + spring-boot-server
 sdd4j + sdd4j-package-by-feature + microprofile-server
 sdd4j + sdd4j-bce + java-cli-app
 ```
@@ -182,7 +183,7 @@ Use `setup` to configure SDD4J for an existing Java project before creating spec
 Workflow:
 
 1. Inspect project files enough to identify Java source roots, build tool, likely stack, and likely layout.
-2. Detect or ask for the primary architecture layout: `sdd4j-package-by-feature`, `sdd4j-package-by-layer`, `sdd4j-bce`, or a project-specific mapping.
+2. Detect or ask for the primary architecture layout: `sdd4j-package-by-feature`, `sdd4j-package-by-layer`, `sdd4j-bce`, `sdd4j-hexagonal`, or a project-specific mapping. When layer roots (`application`/`domain`/`infrastructure`) and `port`/`adapter` packages coexist, the layout reads as both layered and hexagonal — present the evidence and ask which semantics to enforce; absence of `port`/`adapter` packages rules hexagonal out.
 3. Detect or ask for the stack skill: Spring Boot, MicroProfile, Java CLI, or another Java stack.
 4. If multiple layouts appear, treat that as exceptional. Ask whether the project is transitional or multi-module, then propose explicit architecture routing by module, package root, or capability set.
 5. Propose the `## SDD4J` section for `AGENTS.md`.
