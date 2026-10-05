@@ -38,6 +38,7 @@ Create diagrams that show interactions and dependencies between components, grou
   - BCE → boundary, control, and entity layers
   - Package By Layer → the capability's classes inside layer containers
   - Package By Feature → the feature package's internals, using layer element styles
+  - Hexagonal → ports, use case, and domain inside the hexagon; driving adapters on the left, driven adapters and externals on the right
 - Show internal flow (e.g. boundary → control → entity, entrypoint → application → domain)
 - Cross-component edges connect at the boundary or entrypoint that owns the interaction
 - External dependencies connect to the internal element that uses them
@@ -64,6 +65,13 @@ Create diagrams that show interactions and dependencies between components, grou
 - Detection: self-contained capability packages under a base package; `sdd4j-package-by-feature` declared in `AGENTS.md`
 - Interactions: declared calls and events between feature packages; shared packages are exceptional nodes
 
+### Hexagonal (Ports & Adapters)
+
+- Vocabulary: capability, driving adapter (inbound), inbound port, use case, outbound port, driven adapter (outbound), domain, external
+- Detection: `port`/`adapter` package roots or `*.port.*`/`*.adapter.*` segments (canonical: `<capability>.application.port.in|out`, `<capability>.adapter.in|out`); `sdd4j-hexagonal` declared in `AGENTS.md`
+- Ambiguity: `application`/`domain`/`infrastructure` layer names overlap with Package By Layer — the distinguishing signal is `port`/`adapter` packages; layer roots alone do not imply hexagonal; when both readings fit, ask rather than guess
+- Interactions: driving adapter → inbound port → use case → domain; use case → outbound port → driven adapter → external. Draw driving side left, driven side right.
+
 ### Generic
 
 - No declared or detectable architecture → component, grouping, and external vocabulary only (the renderers' Default mapping)
@@ -75,4 +83,5 @@ When the user does not specify components, analyze the codebase per the detected
 - **BCE**: scan for BC packages (children of the top-level application package containing `boundary`/`control`/`entity` sub-packages); find cross-BC interactions via injected references, REST client calls, or messaging
 - **Package By Layer**: scan layer roots and group classes by the project's capability mapping (class-name prefix, declared `AGENTS.md` mapping)
 - **Package By Feature**: scan feature packages under the base package; find edges via imports or calls crossing package boundaries
+- **Hexagonal**: scan capability packages for `adapter.in.*`/`adapter.out.*` and `application.port.*`; edges are driving-adapter calls into inbound ports and outbound-port usages resolved to driven adapters
 - **All**: determine external dependencies (third-party APIs, cloud services, databases, message brokers)
