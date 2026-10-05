@@ -145,6 +145,7 @@ Architecture layout:
 - entity package: `entity`
 
 Traceability:
+- trace convention: per-component `{Component}Requirement` annotation with a nested `Rn` enum; enum constants (e.g. `R1_2`) resolve to the literal `Rn.m` id
 - requirement id must resolve to its exact runner-visible `Rn.m` form through a display name, case label, symbol, or annotation consumed by the test/reporting infrastructure
 - a normalized Java identifier such as `R1_2` is valid only when the configured infrastructure resolves and displays it as `R1.2`
 - JavaDoc and comments alone do not count
