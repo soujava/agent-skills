@@ -1,0 +1,90 @@
+<mxfile>
+  <diagram name="Hexagonal" id="hex1">
+    <mxGraphModel dx="1024" dy="768" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <!-- Driving adapter: OrderResource (left of the hexagon) -->
+        <mxCell id="2" value="OrderResource" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=10;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#000000;fontSize=13;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="220" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Capability core: hexagon container (the hexagon boundary) -->
+        <mxCell id="10" value="Checkout" style="shape=hexagon;whiteSpace=wrap;html=1;shadow=1;container=1;collapsible=0;verticalAlign=top;spacingTop=8;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#000000;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="80" width="620" height="340" as="geometry"/>
+        </mxCell>
+        <!-- Inbound port -->
+        <mxCell id="11" value="PlaceOrderUseCase" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=10;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#000000;fontSize=13;fontStyle=0;" vertex="1" parent="10">
+          <mxGeometry x="40" y="140" width="150" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Use case / application service -->
+        <mxCell id="12" value="CheckoutService" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=10;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#000000;fontSize=13;fontStyle=0;" vertex="1" parent="10">
+          <mxGeometry x="220" y="140" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Outbound port: persistence -->
+        <mxCell id="13" value="LoadOrderPort" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=10;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#000000;fontSize=13;fontStyle=0;" vertex="1" parent="10">
+          <mxGeometry x="430" y="80" width="150" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Outbound port: payment -->
+        <mxCell id="14" value="ChargePaymentPort" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=10;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#000000;fontSize=13;fontStyle=0;" vertex="1" parent="10">
+          <mxGeometry x="430" y="220" width="150" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Domain type -->
+        <mxCell id="15" value="Order" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=10;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#000000;fontSize=13;fontStyle=0;" vertex="1" parent="10">
+          <mxGeometry x="220" y="250" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Driven adapter: persistence -->
+        <mxCell id="16" value="OrderPersistenceAdapter" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=10;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#000000;fontSize=13;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="920" y="100" width="180" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Driven adapter: payment client -->
+        <mxCell id="17" value="PaymentClient" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=10;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#000000;fontSize=13;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="920" y="280" width="180" height="60" as="geometry"/>
+        </mxCell>
+        <!-- External: database -->
+        <mxCell id="18" value="Database" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=10;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#000000;fontSize=13;fontStyle=0;dashed=1;dashPattern=8 4;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="100" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <!-- External: payment gateway -->
+        <mxCell id="19" value="Payment Gateway" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;arcSize=10;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#000000;fontSize=13;fontStyle=0;dashed=1;dashPattern=8 4;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="280" width="140" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Edge: OrderResource -> PlaceOrderUseCase (crosses hexagon boundary: pinned) -->
+        <mxCell id="20" value="REST" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#000000;fontColor=#000000;fontSize=16;fontStyle=0;endArrow=block;endFill=1;shadow=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="2" target="11" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Edge: PlaceOrderUseCase -> CheckoutService -->
+        <mxCell id="21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#000000;fontColor=#000000;fontSize=16;fontStyle=0;endArrow=block;endFill=1;shadow=0;" edge="1" source="11" target="12" parent="10">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Edge: CheckoutService -> Order -->
+        <mxCell id="22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#000000;fontColor=#000000;fontSize=16;fontStyle=0;endArrow=block;endFill=1;shadow=0;" edge="1" source="12" target="15" parent="10">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Edge: CheckoutService -> LoadOrderPort -->
+        <mxCell id="23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#000000;fontColor=#000000;fontSize=16;fontStyle=0;endArrow=block;endFill=1;shadow=0;" edge="1" source="12" target="13" parent="10">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Edge: CheckoutService -> ChargePaymentPort -->
+        <mxCell id="24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#000000;fontColor=#000000;fontSize=16;fontStyle=0;endArrow=block;endFill=1;shadow=0;" edge="1" source="12" target="14" parent="10">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Edge: LoadOrderPort -> OrderPersistenceAdapter (crosses hexagon boundary: pinned) -->
+        <mxCell id="25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#000000;fontColor=#000000;fontSize=16;fontStyle=0;endArrow=block;endFill=1;shadow=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="13" target="16" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Edge: ChargePaymentPort -> PaymentClient (crosses hexagon boundary: pinned) -->
+        <mxCell id="26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#000000;fontColor=#000000;fontSize=16;fontStyle=0;endArrow=block;endFill=1;shadow=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="14" target="17" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Edge: OrderPersistenceAdapter -> Database -->
+        <mxCell id="27" value="JPA" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#000000;fontColor=#000000;fontSize=16;fontStyle=0;endArrow=block;endFill=1;shadow=0;" edge="1" source="16" target="18" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <!-- Edge: PaymentClient -> Payment Gateway -->
+        <mxCell id="28" value="REST" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;strokeColor=#000000;fontColor=#000000;fontSize=16;fontStyle=0;endArrow=block;endFill=1;shadow=0;" edge="1" source="17" target="19" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
