@@ -74,6 +74,7 @@ An optional repo-root README can project the system charter, vision, capability 
 - A trace may use the literal id or a symbol whose display form is the literal id.
 - Traceability is complete in both directions: every requirement has a test trace, and every literal or symbolic trace resolves to an existing requirement.
 - JavaDoc and comments alone do not count as traceability.
+- `setup` resolves the concrete trace mechanism and records it in the `trace convention` field of `AGENTS.md ## SDD4J`; `sdd4j-ears-tests` consumes it during `apply`.
 - `new`, `apply`, and `verify` resolve `Spec language` from `AGENTS.md ## SDD4J`; when absent, specs are written and checked in English.
 - EARS patterns are semantic and may be localized when configured.
 - English requirements use `shall`; localized requirements use a consistent mandatory equivalent in the configured language.

@@ -112,10 +112,13 @@ Stack:
 - verification command: `./mvnw test`
 
 Traceability:
+- trace convention: per-capability `{Capability}Requirement` annotation with a nested `Rn` enum; enum constants (e.g. `R1_2`) resolve to the literal `Rn.m` id
 - requirement id must resolve to its exact runner-visible `Rn.m` form through a display name, case label, symbol, or annotation consumed by the test/reporting infrastructure
 - a normalized Java identifier such as `R1_2` is valid only when the configured infrastructure resolves and displays it as `R1.2`
 - JavaDoc and comments alone do not count
 ```
+
+The `trace convention` field names the concrete mechanism that materializes requirement ids — for example the `{Capability}Requirement` annotation with a nested `Rn` enum for Java stacks, or literal display-name ids for web stacks and `-st` modules. Resolve it during `setup` and write it into the `## SDD4J` section; `sdd4j-ears-tests` consumes it during `apply` so test materialization is deterministic.
 
 For sdd4j-package-by-layer projects, include explicit layer package roots and the capability mapping convention. For mixed or transitional repositories, include a short `architecture routing` rule that maps package roots or modules to adapters.
 
@@ -186,9 +189,10 @@ Workflow:
 2. Detect or ask for the primary architecture layout: `sdd4j-package-by-feature`, `sdd4j-package-by-layer`, `sdd4j-bce`, `sdd4j-hexagonal`, or a project-specific mapping. When layer roots (`application`/`domain`/`infrastructure`) and `port`/`adapter` packages coexist, the layout reads as both layered and hexagonal — present the evidence and ask which semantics to enforce; absence of `port`/`adapter` packages rules hexagonal out.
 3. Detect or ask for the stack skill: Spring Boot, MicroProfile, Java CLI, or another Java stack.
 4. If multiple layouts appear, treat that as exceptional. Ask whether the project is transitional or multi-module, then propose explicit architecture routing by module, package root, or capability set.
-5. Propose the `## SDD4J` section for `AGENTS.md`.
-6. Ask for confirmation before writing or replacing that section.
-7. Write only the project mapping. Do not create capability specs or domain code during setup.
+5. Resolve the test trace convention: scan tests for an existing trace idiom. When the project already uses one, adopt it. When none exists, ask — offer enumerable choices such as the per-capability `{Capability}Requirement` annotation with a nested `Rn` enum (Java stacks) or literal display-name ids (web stacks, `-st` modules) — and record the choice in the `trace convention` field.
+6. Propose the `## SDD4J` section for `AGENTS.md`.
+7. Ask for confirmation before writing or replacing that section.
+8. Write only the project mapping. Do not create capability specs or domain code during setup.
 
 When confidence is low, ask one concrete question at a time. Prefer enumerable choices with room for a custom answer.
 
