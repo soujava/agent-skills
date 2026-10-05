@@ -94,7 +94,7 @@ During `/sdd4j apply`, use this skill when an `Rn.m` statement lacks a test trac
 Read `references/realizations.md` when concrete examples are useful. Use the project's existing test idiom; never introduce a second framework or style just because an example uses it. 
 
 The parameter-source mechanism and display-name form belong to the composed stack skill — read `references/realizations.md` for the per-stack shape (JUnit 5
-`@ParameterizedTest` + `@MethodSource`). Java stacks materialize the `Rn.m` ids as a generated per-BC `{BC name in CamelCase}Requirement` annotation with a nested `Rn` enum — the label contract is unchanged because the enum's display form is the literal id; web stacks and the black-box `-st` module keep literal strings. Pick the one the project already uses; never introduce a second test idiom.
+`@ParameterizedTest` + `@MethodSource`). Java stacks materialize the `Rn.m` ids as a generated per-BC `{BC name in CamelCase}Requirement` annotation with a nested `Rn` enum — the label contract is unchanged because the enum's display form is the literal id; web stacks and the black-box `-st` module keep literal strings. Resolve the mechanism in this order: the `trace convention` field in `AGENTS.md ## SDD4J` when declared; otherwise the idiom the project's tests already use; if neither exists, propose one and ask. Never introduce a second test idiom.
 
 ## Trace Coverage Check
 

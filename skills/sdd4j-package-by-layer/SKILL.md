@@ -72,7 +72,7 @@ During `/sdd4j setup`, ask for or confirm:
 - Model/domain/entity package roots.
 - Repository or infrastructure package roots, if they matter for drift checks.
 - Capability-to-class convention: prefix, suffix, annotation, package list, or explicit class list.
-- Test trace convention.
+- Test trace convention — recorded in the `trace convention` field (e.g. the `{Capability}Requirement` annotation with nested `Rn` enum, or literal display-name ids).
 
 ## Capability Mapping Strategies
 
@@ -138,6 +138,7 @@ Capability mapping:
 - shared models: `User`, `Money` are excluded from capability entity drift unless declared
 
 Traceability:
+- trace convention: per-capability `{Capability}Requirement` annotation with a nested `Rn` enum; enum constants (e.g. `R1_2`) resolve to the literal `Rn.m` id
 - requirement id must resolve to its exact runner-visible `Rn.m` form through a display name, case label, symbol, or annotation consumed by the test/reporting infrastructure
 - a normalized Java identifier such as `R1_2` is valid only when the configured infrastructure resolves and displays it as `R1.2`
 - JavaDoc and comments alone do not count

@@ -152,7 +152,7 @@ static Stream<Arguments> placeOrderCases() {
 
 Do not repeat the group's statement list as an annotation on a parameterized test method; the rows already provide the per-statement trace and duplicating that list creates drift. For a single-statement group, a plain test may use `@CheckoutRequirement(R1_2)`.
 
-Zero-dependency Java tests use the same `Rn` constants in their case records or lists. Web stacks and black-box `-st` modules use literal string ids because they do not depend on the server's generated Java types.
+Zero-dependency Java tests use the same `Rn` constants in their case records or lists. Web stacks and black-box `-st` modules use literal string ids because they do not depend on the server's generated Java types. The concrete mechanism resolves from the `trace convention` field in `AGENTS.md ## SDD4J` when declared; otherwise the project's existing test idiom wins.
 
 ## Trace And Drift
 

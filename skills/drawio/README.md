@@ -1,6 +1,6 @@
 # Drawio Skill
 
-Generates draw.io XML overview diagrams with consistent style and shape mappings for BCE, package-by-layer, and package-by-feature Java architectures, saved as `<name>.drawio`.
+Generates draw.io XML overview diagrams with consistent style and shape mappings for BCE, package-by-layer, package-by-feature, and hexagonal Java architectures, saved as `<name>.drawio`.
 
 ## When To Use
 
@@ -23,7 +23,7 @@ graph LR
 
 ## Shape Mappings
 
-One mapping per diagram, selected from the architecture the user named or the composed skill implies (`sdd4j-bce`, `sdd4j-package-by-layer`, `sdd4j-package-by-feature`, or the architecture `diagrams` detected); the Default mapping covers everything else.
+One mapping per diagram, selected from the architecture the user named or the composed skill implies (`sdd4j-bce`, `sdd4j-package-by-layer`, `sdd4j-package-by-feature`, `sdd4j-hexagonal`, or the architecture `diagrams` detected); the Default mapping covers everything else.
 
 | Mapping | Elements |
 |---|---|
@@ -31,6 +31,7 @@ One mapping per diagram, selected from the architecture the user named or the co
 | BCE | business component, subsystem container, boundary, control, entity, external |
 | Package By Layer | capability, layer containers, entrypoint, application, domain, infrastructure, external |
 | Package By Feature | feature package, module container, shared package, external |
+| Hexagonal | capability core (hexagon node or container boundary), driving adapter, port, use case, domain, driven adapter, external |
 
 Colors carry the same meaning across all mappings — and match the `mermaid` skill's palette: blue = capability/component, green = entrypoint/boundary, purple = application/control, yellow = domain/entity, gray = infrastructure/shared, dashed yellow = external.
 
@@ -47,6 +48,7 @@ Colors carry the same meaning across all mappings — and match the `mermaid` sk
 - [`references/example-bce.drawio`](references/example-bce.drawio) — BCE between-components example
 - [`references/example-layered.drawio`](references/example-layered.drawio) — Package By Layer example
 - [`references/example-feature.drawio`](references/example-feature.drawio) — Package By Feature example
+- [`references/example-hexagonal.drawio`](references/example-hexagonal.drawio) — Hexagonal inside-a-capability example
 
 ## Source Contract
 

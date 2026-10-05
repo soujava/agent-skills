@@ -36,12 +36,13 @@ graph TD
 | BCE | `[org].[project].[bc].[boundary|control|entity]` packages; `sdd4j-bce` |
 | Package By Layer | global `controller`/`service`/`repository`/`model` roots; `sdd4j-package-by-layer` |
 | Package By Feature | self-contained capability packages; `sdd4j-package-by-feature` |
+| Hexagonal (Ports & Adapters) | `port`/`adapter` package roots or `*.port.*`/`*.adapter.*` segments; `sdd4j-hexagonal`. Layer roots without port/adapter packages → Package By Layer, not hexagonal; ambiguous → ask. |
 | Generic | no declared or detectable architecture |
 
 ## Scope
 
 - **System view** (default) — components as opaque nodes, groupings as containers, edges as interactions, externals as separate nodes.
-- **Inside a component** — expand one component's internal structure: boundary/control/entity (BCE), classes across layer containers (layered), or feature-package internals (feature). Expanding several components at once produces noisy diagrams.
+- **Inside a component** — expand one component's internal structure: boundary/control/entity (BCE), classes across layer containers (layered), feature-package internals (feature), or ports/use-case/domain inside the hexagon with adapters outside (hexagonal). Expanding several components at once produces noisy diagrams.
 
 ## Format Routing
 

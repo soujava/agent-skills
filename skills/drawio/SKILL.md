@@ -1,6 +1,6 @@
 ---
 name: drawio
-description: Create draw.io overview diagrams with consistent visual style and shape mappings for BCE, package-by-layer, and package-by-feature Java architectures. Use when asked to create, generate, or edit draw.io diagrams, architecture diagrams, component diagrams, or visual overviews of systems and modules. Triggers on "draw.io", "drawio", "create a diagram", "architecture diagram", "component diagram", or requests to visualize high-level system structure. Not for sequence diagrams or class diagrams.
+description: Create draw.io overview diagrams with consistent visual style and shape mappings for BCE, package-by-layer, package-by-feature, and hexagonal Java architectures. Use when asked to create, generate, or edit draw.io diagrams, architecture diagrams, component diagrams, or visual overviews of systems and modules. Triggers on "draw.io", "drawio", "create a diagram", "architecture diagram", "component diagram", or requests to visualize high-level system structure. Not for sequence diagrams or class diagrams.
 ---
 
 # Draw.io Overview Diagrams
@@ -13,6 +13,7 @@ Generate valid draw.io XML and save as `<name>.drawio` using the Write tool.
   - BCE business components, or `sdd4j-bce` in context → BCE mapping
   - technical layer packages, or `sdd4j-package-by-layer` in context → Package By Layer mapping
   - feature/capability packages, or `sdd4j-package-by-feature` in context → Package By Feature mapping
+  - ports-and-adapters layout, or `sdd4j-hexagonal` in context → Hexagonal mapping
 - when invoked via `diagrams`, use the architecture it detected — the router is architecture-neutral
 - no clear architecture → use the Default mapping
 - never mix mappings inside one diagram
@@ -102,6 +103,21 @@ Nodes are feature packages; containers group by module or base package. Drawing 
 | Shared package (declared exception) | rounded rectangle, `dashed=1` | `#f5f5f5` | `#666666` |
 | External service | rounded rectangle, `dashed=1` | `#fff2cc` | `#d6b656` |
 
+## Hexagonal (Ports & Adapters) Mapping
+
+Nodes are adapters, ports, use cases, and domain types. Lay out driving side left, driven side right; the hexagon boundary is a `shape=hexagon` container (`container=1`) holding ports, use cases, and domain when expanding a component, or a plain `shape=hexagon` node per capability in system view. Edges show call flow through ports — interface indirection is elided.
+
+| Element | Shape | Fill | Border |
+|---|---|---|---|
+| Capability core | `shape=hexagon` (node, or `container=1` boundary) | `#dae8fc` | `#6c8ebf` |
+| Driving adapter (REST resource, consumer, CLI, scheduler) | rounded rectangle | `#d5e8d4` | `#82b366` |
+| Inbound port (use case interface) | rounded rectangle | `#e1d5e7` | `#9673a6` |
+| Use case / application service | rounded rectangle | `#e1d5e7` | `#9673a6` |
+| Domain type | rounded rectangle | `#fff2cc` | `#d6b656` |
+| Outbound port | rounded rectangle | `#e1d5e7` | `#9673a6` |
+| Driven adapter (persistence, client, publisher) | rounded rectangle | `#f5f5f5` | `#666666` |
+| External service | rounded rectangle, `dashed=1` | `#fff2cc` | `#d6b656` |
+
 ## Content
 
 - visualize only high-level concepts and modules
@@ -174,4 +190,4 @@ Minimal skeleton — every `.drawio` file must follow this hierarchy:
 ## File Output
 
 - save as `<name>.drawio` using the Write tool
-- see `references/example-bce.drawio`, `references/example-layered.drawio`, and `references/example-feature.drawio` for complete per-mapping examples
+- see `references/example-bce.drawio`, `references/example-layered.drawio`, `references/example-feature.drawio`, and `references/example-hexagonal.drawio` for complete per-mapping examples
